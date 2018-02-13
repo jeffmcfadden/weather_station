@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %meta{ charset: "uft-8" }
+    
+    %meta{ "http-equiv" => "X-UA-Compatible", content: "IE=edge" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1"  }
+    %title Weather Station 
+    %meta{:name => "description", :content => "McFadden Weather Station"}/
+    
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
+    
+  %body
+    .container-fluid
+      = yield
