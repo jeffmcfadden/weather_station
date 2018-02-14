@@ -12,7 +12,7 @@ threads threads_count, threads_count
 prune_bundler
 
 directory '/www/weather_station/current'
-bind "unix:///www/weather_station/shared/puma.cornhole.sock"
+bind "unix:///www/weather_station/shared/puma.weather_station.sock"
 state_path "/www/weather_station/shared/puma.state"
 pidfile "/www/weather_station/shared/puma.pid"
 
