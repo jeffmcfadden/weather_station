@@ -23,3 +23,7 @@
               #{(v * (9.0/5.0) + 32.0).round(1)}
             - else
               #{v.round(1)}
+              
+    
+    = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone.beginning_of_day ).collect{ |so| [so.observed_at, so.value * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0}}]
+    
