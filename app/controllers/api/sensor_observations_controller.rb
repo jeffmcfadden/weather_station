@@ -22,7 +22,7 @@ class Api::SensorObservationsController < Api::ApplicationController
     
     params[:sensor_observations].each do |sensor_observation|
       observation= SensorObservation.find_or_create_by( sensor_id: sensor_observation[:sensor_id], observed_at: sensor_observation[:observed_at] )
-      observation.value = sensor_observation[:value]
+      observation.value = sensor_observation[:value].to_f
       observation.save
       records_created_or_updated += 1
     end
