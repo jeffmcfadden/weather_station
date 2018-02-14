@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sensor_type: 1
+  latest_value: 1.5
+  latest_value_observed_at: 2018-02-14 12:50:33
+  sensor_settings: MyText
+
+two:
+  name: MyString
+  sensor_type: 1
+  latest_value: 1.5
+  latest_value_observed_at: 2018-02-14 12:50:33
+  sensor_settings: MyText
