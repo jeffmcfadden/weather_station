@@ -14,5 +14,12 @@
             #{s.name}
           %br
           Latest Value:
+          
+          - v = s.sensor_observations.order( observed_at: :desc ).limit(1)&.first&.value
+          - v = 0 if v.nil?
+          
           %strong
-            #{s.sensor_observations.order( observed_at: :desc ).limit(1)&.first&.value}
+            - if s.temperature?
+              #{(v * (9.0/5.0) + 32.0).round(1)}
+            - else
+              #{v.round(1)}
