@@ -45,3 +45,7 @@ Weather Station, hosted on a Raspberry Pi. I'm using another RPi to post data to
     
     # Deploy locally: bundle exec cap production deploy
     # Note: This takes _forever_ the first time.
+    
+    # Deploy will fail and you have to do a few things:
+    # (from within one of the release dirs)
+    RAILS_ENV=production bundle exec rails db:create
