@@ -1,6 +1,6 @@
 class Api::SensorObservationsController < Api::ApplicationController
   
-  before_action :verify_api_token, only: [:create]
+  before_action :verify_api_token, only: [:create, :create_batch]
   
   def create
     observation = create_or_find_sensor_observation
