@@ -20,16 +20,24 @@ class Api::SensorObservationsController < Api::ApplicationController
   def create_batch
     records_created_or_updated = 0
     
-    params[:sensor_observations].each do |sensor_observation|
-      observation= SensorObservation.find_or_create_by( sensor_id: sensor_observation[:sensor_id], observed_at: sensor_observation[:observed_at] )
-      observation.value = sensor_observation[:value].to_f
-      observation.save
-      records_created_or_updated += 1
-    end
-        
-    respond_to do |format|
-      format.html { redirect_to observation, notice: 'Observations saved' }
-      format.json { render json: { success: true, records_created_or_updated: records_created_or_updated }, status: :updated }
+    begin
+      params[:sensor_observations].each do |sensor_observation|
+        observation= SensorObservation.find_or_create_by( sensor_id: sensor_observation[:sensor_id], observed_at: sensor_observation[:observed_at] )
+        observation.value = sensor_observation[:value].to_f
+        observation.save
+        records_created_or_updated += 1
+      end
+      
+      respond_to do |format|
+        format.html { redirect_to observation, notice: 'Observations saved' }
+        format.json { render json: { success: true, records_created_or_updated: records_created_or_updated }, status: :updated }
+      end
+      
+    rescue StandardError => e
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Error: #{e}" }
+        format.json { render json: { success: false, records_created_or_updated: records_created_or_updated, error: "#{e}" } }
+      end
     end
   end
   
