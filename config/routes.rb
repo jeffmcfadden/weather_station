@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :sensor_observations
+    resources :sensor_observations do
+      collection do
+        post :create_batch
+      end
+    end
   end
   
   resources :sensors
