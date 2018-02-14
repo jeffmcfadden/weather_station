@@ -1,12 +1,12 @@
 # README
 
-Weather Station
+Weather Station, hosted on a Raspberry Pi. I'm using another RPi to post data to this server. There's no reason you couldn't have that all on one device, but for various reasons I have a more convoluted setup.
 
 ## Setting up my RPi
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install gcc g++ make bison libyaml-dev libssl-dev libffi-dev zlib1g-dev libxslt-dev libxml2-dev libpq-dev zip nodejs vim libreadline-dev postgresql postgresql-contrib libpq-dev nginx wget
+    sudo apt-get install gcc g++ make bison libyaml-dev libssl-dev libffi-dev zlib1g-dev libxslt-dev libxml2-dev libpq-dev zip nodejs vim libreadline-dev postgresql postgresql-contrib libpq-dev nginx wget git
     
     mkdir installs
     cd installs
@@ -34,3 +34,14 @@ Weather Station
     # # "local" is for Unix domain socket connections only
     
     sudo service postgresql restart
+    
+    # Copy nginx config
+    # Copy systemd config files
+    
+    
+    # Setup Capistrano
+    # This included deploy keys, deploy config, etc.
+    # Create config files on server (application.yml, secrets.yml)
+    
+    # Deploy locally: bundle exec cap production deploy
+    # Note: This takes _forever_ the first time.

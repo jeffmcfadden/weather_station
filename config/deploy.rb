@@ -2,7 +2,7 @@
 lock "~> 3.10.1"
 
 set :application, "weather_station"
-set :repo_url, "git@example.com:jeffmcfadden/weather_station.git"
+set :repo_url, "git@github.com:jeffmcfadden/weather_station.git"
 
 # Default branch is :master
 set :branch, ENV.fetch('REVISION', 'master')
