@@ -6,7 +6,7 @@ Weather Station, hosted on a Raspberry Pi. I'm using another RPi to post data to
 
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get install gcc g++ make bison libyaml-dev libssl-dev libffi-dev zlib1g-dev libxslt-dev libxml2-dev libpq-dev zip nodejs vim libreadline-dev postgresql postgresql-contrib libpq-dev nginx wget git yarn
+    sudo apt-get install gcc g++ make bison libyaml-dev libssl-dev libffi-dev zlib1g-dev libxslt-dev libxml2-dev libpq-dev zip nodejs vim libreadline-dev postgresql postgresql-contrib libpq-dev nginx wget git yarn memcached
     
     mkdir installs
     cd installs
