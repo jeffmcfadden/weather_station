@@ -1,0 +1,20 @@
+# /lib/systemd/system/puma.socket
+# Put this in /usr/lib/systemd/system (CentOS) or /lib/systemd/system (Ubuntu).
+[Unit]
+Description=Puma HTTP Server Accept Sockets
+
+[Socket]
+#ListenStream=0.0.0.0:9292
+#ListenStream=0.0.0.0:9293
+
+# AF_UNIX domain socket
+# SocketUser, SocketGroup, etc. may be needed for Unix domain sockets
+ListenStream=/www/weather_station/shared/puma.weather_station.sock
+
+# Socket options matching Puma defaults
+NoDelay=true
+ReusePort=true
+Backlog=1024
+
+[Install]
+WantedBy=sockets.target
