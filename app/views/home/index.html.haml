@@ -1,6 +1,18 @@
-%h1
-  Home
+.row
+  .col-xs-12
+    %h1
+      Home
   
-%h2
-  Sensor Observations:
-  #{SensorObservation.count}
+    %h2
+      Sensor Observations:
+      #{SensorObservation.count}
+  
+    .row
+      - Sensor.all.each do |s|
+        .col-xs-2.text-center
+          %strong
+            #{s.name}
+          %br
+          Latest Value:
+          %strong
+            #{s.sensor_observations.order( observed_at: :desc ).limit(1).first.value}
