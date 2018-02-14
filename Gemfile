@@ -49,7 +49,7 @@ gem 'capistrano', '>= 3.9.0'
 gem 'chartkick'
 gem 'groupdate'
 
-
+gem 'dalli'
 
 # Reduces boot times through caching; required in config/boot.rb
 
