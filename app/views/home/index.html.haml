@@ -15,4 +15,4 @@
           %br
           Latest Value:
           %strong
-            #{s.sensor_observations.order( observed_at: :desc ).limit(1).first.value}
+            #{s.sensor_observations.order( observed_at: :desc ).limit(1)&.first&.value}
