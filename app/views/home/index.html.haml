@@ -1,36 +1,50 @@
 .row
-  .col-xs-12
-    %h1
-      Home
-  
-    %h2
-      Sensor Observations:
-      #{SensorObservation.count}
-  
+  .col-xs-12.col-sm-10.col-sm-offset-1
     .row
-      - Sensor.all.each do |s|
-        .col-xs-2.text-center
-          %strong
-            #{s.name}
-          %br
-          Latest Value:
-          
-          - v = s.sensor_observations.order( observed_at: :desc ).limit(1)&.first&.value
-          - v = 0 if v.nil?
-          
-          %strong
-            - if s.temperature?
-              #{(v * (9.0/5.0) + 32.0).round(1)}
-            - else
-              #{v.round(1)}
-              
+      .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+  
+        .row.vertical-align
+          .col-xs-6
+            .jumbotron
+              %h1.text-center
+                #{formatted_temperature Sensor.find(1).latest_observation.value}
+          .col-xs-6
+            %table.table.small.table-condensed
+              %tr
+                %th
+                  Humidity
+                %td
+                  #{Sensor.find(3).latest_observation.value.round(0)}%
+              %tr
+                %th
+                  Dewpoint
+                %td
+                  #{formatted_temperature Sensor.find(4).latest_observation.value}
+              %tr
+                %th
+                  Pressure
+                %td
+                  #{Sensor.find(2).latest_observation.value.round(0)}
+
+    .row
+      %p
+        %strong
+          Sensor Observations:
+        #{SensorObservation.count}
+  
     
     .row
       .col-xs-12
+        %h2 
+          Recent Temperature
+      
         = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone - 2.days ).collect{ |so| [so.observed_at, (so.value * (9.0/5.0) + 32.0).round(1)] }, min: nil, max: nil, library: {borderWidth: 1, lineTension: 0.05, pointRadius: 0}}], min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
     
     .row
       .col-xs-12
+        %h2 
+          Recent Highs/Lows
+        
         = line_chart [{name: 'High Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).maximum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).minimum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0.25, pointRadius: 0}}], min: 30, max: 90, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] } },colors: [ '#dc5228', '#286fdc' ]
         
       
