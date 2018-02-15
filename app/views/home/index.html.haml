@@ -27,11 +27,11 @@
     
     .row
       .col-xs-12
-        = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone - 2.days ).collect{ |so| [so.observed_at, so.value * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0}}]
+        = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone - 2.days ).collect{ |so| [so.observed_at, so.value * (9.0/5.0) + 32.0] }, min: nil, max: nil, library: {lineTension: 0, pointRadius: 0}}], min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
     
     .row
       .col-xs-12
-        = line_chart [{name: 'High Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).maximum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0}}, {name: 'Low Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).minimum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0}}], colors: [ '#dc5228', '#286fdc' ]
+        = line_chart [{name: 'High Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).maximum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", 90.days.ago ).group_by_day(:observed_at).minimum(:value).collect{ |k,v| [k, v * (9.0/5.0) + 32.0] }, library: {lineTension: 0, pointRadius: 0}}], min: 30, max: 90, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] } },colors: [ '#dc5228', '#286fdc' ]
         
       
           
