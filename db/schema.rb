@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_14_220121) do
+ActiveRecord::Schema.define(version: 2018_02_16_160828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sensor_daily_aggregations", force: :cascade do |t|
+    t.bigint "sensor_id"
+    t.datetime "day"
+    t.float "minimum"
+    t.datetime "minimum_at"
+    t.float "maximum"
+    t.datetime "maximum_at"
+    t.float "average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sensor_id"], name: "index_sensor_daily_aggregations_on_sensor_id"
+  end
 
   create_table "sensor_observations", force: :cascade do |t|
     t.bigint "sensor_id"
@@ -36,5 +49,6 @@ ActiveRecord::Schema.define(version: 2018_02_14_220121) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "sensor_daily_aggregations", "sensors"
   add_foreign_key "sensor_observations", "sensors"
 end
