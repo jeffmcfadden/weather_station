@@ -26,13 +26,12 @@
                 %td
                   #{Sensor.find(2).latest_observation.value.round(0)}
 
-    .row
-      %p
-        %strong
-          Sensor Observations:
-        #{SensorObservation.count}
+    - # .row
+    - #   %p
+    - #     %strong
+    - #       Sensor Observations:
+    - #     #{SensorObservation.count}
   
-    
     .row
       .col-xs-12
         %h2 
