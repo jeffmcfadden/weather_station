@@ -38,8 +38,8 @@
         %h2 
           Recent Temperature
       
-        - cache "temperature_chart", expires_in: 5.minutes do
-          = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone - 2.days ).collect{ |so| [so.observed_at, (so.value * (9.0/5.0) + 32.0).round(1)] }, min: nil, max: nil, library: {borderWidth: 1, lineTension: 0.05, pointRadius: 0}}], min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
+        - # cache "temperature_chart", expires_in: 5.minutes do
+        = line_chart [{name: 'Temperature', data: SensorObservation.where( sensor_id: 1 ).where( "observed_at > ?", Time.now.in_time_zone - 2.days ).collect{ |so| [so.observed_at, (so.value * (9.0/5.0) + 32.0).round(1)] }, min: nil, max: nil, library: {borderWidth: 1, lineTension: 0.05, pointRadius: 0}}], min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
     
     .row
       .col-xs-12
