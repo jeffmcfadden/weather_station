@@ -22,9 +22,14 @@ class HomeController < ApplicationController
       SensorDailyAggregation.where( sensor_id: 1 ).where( "day > ?", 45.days.ago ).collect{ |a| [a.day, a.minimum.to_f * (9.0/5.0) + 32.0] }
     end
     
+    @recent_average_temperatures  = Rails.cache.fetch("v1/recent_average_temperatures", expires_in: 5.minutes ) do
+      SensorDailyAggregation.where( sensor_id: 1 ).where( "day > ?", 45.days.ago ).collect{ |a| [a.day, a.average.to_f * (9.0/5.0) + 32.0] }
+    end
+    
+    
     # [{name: 'High Temperature', data: @recent_high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @recent_low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
     
-    render json: [{name: 'High Temperature', data: @recent_high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @recent_low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
+    render json: [{name: 'High Temperature', data: @recent_high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @recent_low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}, {name: 'Average Temperature', data: @recent_average_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
   end
   
 end
