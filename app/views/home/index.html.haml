@@ -37,14 +37,14 @@
         %h2 
           Recent Temperature
       
-        = line_chart [{name: 'Temperature', data: @recent_temperatures, min: nil, max: nil, library: {borderWidth: 1, lineTension: 0.05, pointRadius: 0}}], min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
+        = line_chart recent_temperatures_for_chart_path, min: 30, max: 90, library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}
     
     .row
       .col-xs-12
         %h2 
           Recent Highs/Lows
         
-        = line_chart [{name: 'High Temperature', data: @recent_high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @recent_low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}], min: 30, max: 90, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] } },colors: [ '#dc5228', '#286fdc' ]
+        = line_chart recent_highs_and_lows_for_chart_path, min: 30, max: 90, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] } },colors: [ '#dc5228', '#286fdc' ]
         
       
           
