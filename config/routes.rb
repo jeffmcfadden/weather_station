@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
   
+  get '/sensors/latest', to: redirect( '/' )
+  
   resources :sensors
   resources :sensor_observations
   
