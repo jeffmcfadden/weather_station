@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
   
-  get '/sensors/latest', to: redirect( '../../' )
+  get '/sensors/latest', to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}" )
   
   resources :sensors
   resources :sensor_observations
