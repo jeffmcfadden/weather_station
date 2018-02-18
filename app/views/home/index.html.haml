@@ -7,30 +7,24 @@
           .col-xs-6
             .jumbotron
               %h1.text-center
-                #{formatted_temperature Sensor.find(1).latest_observation.value}
+                #{formatted_temperature Sensor.find(1).latest_value}
           .col-xs-6
             %table.table.small.table-condensed
               %tr
                 %th
                   Humidity
                 %td
-                  #{Sensor.find(3).latest_observation.value.round(0)}%
+                  #{Sensor.find(3).latest_value.round(0)}%
               %tr
                 %th
                   Dewpoint
                 %td
-                  #{formatted_temperature Sensor.find(4).latest_observation.value}
+                  #{formatted_temperature Sensor.find(4).latest_value}
               %tr
                 %th
                   Pressure
                 %td
-                  #{Sensor.find(2).latest_observation.value.round(0)}
-
-    - # .row
-    - #   %p
-    - #     %strong
-    - #       Sensor Observations:
-    - #     #{SensorObservation.count}
+                  #{Sensor.find(2).latest_value.round(0)}
   
     .row
       .col-xs-12

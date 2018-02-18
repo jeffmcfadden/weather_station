@@ -1,5 +1,5 @@
 class SensorObservation < ApplicationRecord
-  belongs_to :sensor
+  belongs_to :sensor, touch: true
 
   after_commit :update_aggregation
   
