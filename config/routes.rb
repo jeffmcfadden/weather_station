@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :sensors
   resources :sensor_observations
   
+  get '/climate', to: 'climate#index', as: :climate
+  
   get '/recent_temperatures_for_chart',   to: 'home#recent_temperatures_for_chart', as: :recent_temperatures_for_chart
   get '/recent_highs_and_lows_for_chart', to: 'home#recent_highs_and_lows_for_chart', as: :recent_highs_and_lows_for_chart
   
