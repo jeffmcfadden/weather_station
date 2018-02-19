@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     get :compare_month
   end
   
-  get '/sensors/:id',    to: redirect( "/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
-  get '/sensors/latest', to: redirect( "/api/legacy/sensors/latest.json" ), constraints: { format: :json }
+  get '/sensors/:id',    to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
+  get '/sensors/latest', to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}/api/legacy/sensors/latest.json" ), constraints: { format: :json }
   get '/sensors/latest', to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}" )
   
   resources :sensors
