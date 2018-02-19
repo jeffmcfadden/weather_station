@@ -6,8 +6,14 @@ Rails.application.routes.draw do
         post :create_batch
       end
     end
+    
+    get '/legacy/sensors/:id',    to: 'legacy#sensor', as: :legacy_sensor
+    get '/legacy/sensors/latest', to: 'legacy#latest', as: :legacy_latest
+    
   end
   
+  get '/sensors/:id',    to: redirect( "/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
+  get '/sensors/latest', to: redirect( "/api/legacy/sensors/latest.json" ), constraints: { format: :json }
   get '/sensors/latest', to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}" )
   
   resources :sensors
