@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :sensors
+    resources :sensors do
+      collection do
+        get :latest_values
+      end
+    end
     
     get '/legacy/sensors/:id',    to: 'legacy#sensor', as: :legacy_sensor
     get '/legacy/sensors/latest', to: 'legacy#latest', as: :legacy_latest
