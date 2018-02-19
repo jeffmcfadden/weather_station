@@ -1,0 +1,9 @@
+.row
+  .col-xs-12.col-sm-10.col-sm-offset-1
+    .row
+      .col-xs-12
+        %h2 
+          Last 12 Months
+        
+        = line_chart highs_and_lows_graph_data_path( range_start: 12.months.ago, range_end: Time.now ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
+        

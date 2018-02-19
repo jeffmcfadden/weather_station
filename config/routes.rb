@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :graph_data do
     get :recent_temperatures
     get :recent_highs_and_lows
+    get :highs_and_lows
   end
   
   get '/sensors/:id',    to: redirect( "/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }

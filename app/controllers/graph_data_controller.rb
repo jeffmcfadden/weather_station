@@ -30,5 +30,23 @@ class GraphDataController < ApplicationController
     render json: [{name: 'High Temperature', data: @recent_high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @recent_low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}, {name: 'Average Temperature', data: @recent_average_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
   end
   
+  def highs_and_lows
+    
+    @range_start = params[:range_start]
+    @range_end   = params[:range_end]
+
+    @range_start ||= 45.days.ago
+    @range_end   ||= Time.now
+    
+    @range = @range_start..@range_end
+    
+    @high_temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: @range ).collect{ |a| [a.day, a.maximum.to_f * (9.0/5.0) + 32.0] }
+
+    @low_temperatures  = SensorDailyAggregation.where( sensor_id: 1 ).where( day: @range ).collect{ |a| [a.day, a.minimum.to_f * (9.0/5.0) + 32.0] }    
+    
+    render json: [{name: 'High Temperature', data: @high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
+    
+  end
+  
   
 end
