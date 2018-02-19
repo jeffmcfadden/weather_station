@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get :recent_temperatures
     get :recent_highs_and_lows
     get :highs_and_lows
+    get :compare_month
   end
   
   get '/sensors/:id',    to: redirect( "/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
