@@ -13,7 +13,6 @@ class Api::SensorObservationsController < Api::ApplicationController
     end
   end
   
-  
   # Test with:
   # curl -H "Authorization: Bearer asdf1234" -H "Content-type: application/json" -X POST -d "{\"sensor_observations\":[{\"sensor_id\":1,\"observed_at\":\"2018-02-06T13:44:55Z\",\"value\":12.5},{\"sensor_id\":1,\"observed_at\":\"2018-02-06T13:45:55Z\",\"value\":12.5}]}" http://192.168.201.191/api/sensor_observations/create_batch.json
   

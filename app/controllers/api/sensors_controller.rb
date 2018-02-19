@@ -4,7 +4,6 @@ class Api::SensorsController < Api::ApplicationController
     @sensors = Sensor.all
     
     respond_to do |format|
-      format.html {  }
       format.json { render json: @sensors }
     end
   end
@@ -13,7 +12,6 @@ class Api::SensorsController < Api::ApplicationController
     @sensor = Sensor.find(params[:id])
     
     respond_to do |format|
-      format.html {  }
       format.json { render json: @sensor }
     end
   end

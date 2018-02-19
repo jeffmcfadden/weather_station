@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   namespace :api do
-  end
-  namespace :api do
     resources :sensor_observations do
       collection do
         post :create_batch
@@ -13,7 +11,11 @@ Rails.application.routes.draw do
     
     get '/legacy/sensors/:id',    to: 'legacy#sensor', as: :legacy_sensor
     get '/legacy/sensors/latest', to: 'legacy#latest', as: :legacy_latest
-    
+  end
+  
+  resource :graph_data do
+    get :recent_temperatures
+    get :recent_highs_and_lows
   end
   
   get '/sensors/:id',    to: redirect( "/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
