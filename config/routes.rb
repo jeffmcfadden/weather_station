@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
   namespace :api do
+  end
+  namespace :api do
     resources :sensor_observations do
       collection do
         post :create_batch
       end
     end
+    
+    resources :sensors
     
     get '/legacy/sensors/:id',    to: 'legacy#sensor', as: :legacy_sensor
     get '/legacy/sensors/latest', to: 'legacy#latest', as: :legacy_latest
