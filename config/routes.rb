@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   resource :graph_data do
     get :recent_temperatures
+    get :recent_dewpoints
     get :recent_highs_and_lows
     get :highs_and_lows
     get :compare_month
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   get '/climate', to: 'climate#index', as: :climate
   
   get '/recent_temperatures_for_chart',   to: 'home#recent_temperatures_for_chart', as: :recent_temperatures_for_chart
+  get '/recent_dewpoints_for_chart',   to: 'home#recent_dewpoints_for_chart', as: :recent_dewpoints_for_chart
   get '/recent_highs_and_lows_for_chart', to: 'home#recent_highs_and_lows_for_chart', as: :recent_highs_and_lows_for_chart
   
   root to: 'home#index'
