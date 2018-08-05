@@ -7,13 +7,24 @@
         
         = line_chart highs_and_lows_graph_data_path( range_start: 12.months.ago, range_end: Time.now ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
         
-.row
+.row{ style: "margin-top: 2em;" }
   .col-xs-12.col-sm-10.col-sm-offset-1
     .row
+      .col-xs-3.text-right
+        = link_to "Previous", "?month=#{@month - 1}"
+      .col-xs-6
+        %h2.text-center{ style: "margin: 0;"}
+          Compare #{@month_name}
+      .col-xs-3.text-left
+        = link_to "Next", "?month=#{@month + 1}"
+        
+    .row
       .col-xs-12
-        %h2 
-          Compare This Month
         
-        = line_chart compare_month_highs_graph_data_path, min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
+        %h3 Highs
         
-        = line_chart compare_month_lows_graph_data_path, min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
+        = line_chart compare_month_highs_graph_data_path( month: params[:month] ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
+        
+        %h3 Lows
+        
+        = line_chart compare_month_lows_graph_data_path( month: params[:month] ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]

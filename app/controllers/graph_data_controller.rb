@@ -61,8 +61,14 @@ class GraphDataController < ApplicationController
   def compare_month_highs
     data = []
     
+    if params[:month].present?
+      start = Time.new( Time.now.in_time_zone.year, params[:month].to_i, 1, 12, 00 )
+    else
+      start = Time.now.in_time_zone
+    end
+    
     (0..3).each do |n|
-      range = (Time.now.in_time_zone - n.years).beginning_of_month..(Time.now.in_time_zone - n.years).end_of_month
+      range = (start - n.years).beginning_of_month..(start - n.years).end_of_month
       temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: range ).order( day: :asc ).collect{ |a| [a.day.strftime("%b %-d"), a.maximum.to_f * (9.0/5.0) + 32.0] }
       
       data << { name: "#{(Time.now.in_time_zone - n.years).year}", data: temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}
@@ -74,8 +80,14 @@ class GraphDataController < ApplicationController
   def compare_month_lows
     data = []
     
+    if params[:month].present?
+      start = Time.new( Time.now.in_time_zone.year, params[:month].to_i, 1, 12, 00 )
+    else
+      start = Time.now.in_time_zone
+    end
+    
     (0..3).each do |n|
-      range = (Time.now.in_time_zone - n.years).beginning_of_month..(Time.now.in_time_zone - n.years).end_of_month
+      range = (start - n.years).beginning_of_month..(start - n.years).end_of_month
       temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: range ).order( day: :asc ).collect{ |a| [a.day.strftime("%b %-d"), a.minimum.to_f * (9.0/5.0) + 32.0] }
       
       data << { name: "#{(Time.now.in_time_zone - n.years).year}", data: temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}
