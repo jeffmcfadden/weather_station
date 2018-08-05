@@ -58,7 +58,7 @@ class GraphDataController < ApplicationController
     render json: [{name: 'High Temperature', data: @high_temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}, {name: 'Low Temperature', data: @low_temperatures, library: {lineTension: 0.25, pointRadius: 0}}]
   end
   
-  def compare_month
+  def compare_month_highs
     data = []
     
     (0..3).each do |n|
@@ -70,6 +70,20 @@ class GraphDataController < ApplicationController
     
     render json: data
   end
+  
+  def compare_month_lows
+    data = []
+    
+    (0..3).each do |n|
+      range = (Time.now.in_time_zone - n.years).beginning_of_month..(Time.now.in_time_zone - n.years).end_of_month
+      temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: range ).order( day: :asc ).collect{ |a| [a.day.strftime("%b %-d"), a.minimum.to_f * (9.0/5.0) + 32.0] }
+      
+      data << { name: "#{(Time.now.in_time_zone - n.years).year}", data: temperatures, library: {lineTension: 0.25, pointRadius: 0, responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }] }}}
+    end
+    
+    render json: data
+  end
+  
   
   
 end

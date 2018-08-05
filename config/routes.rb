@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     get :recent_dewpoints
     get :recent_highs_and_lows
     get :highs_and_lows
-    get :compare_month
+    get :compare_month_highs
+    get :compare_month_lows
   end
   
   get '/sensors/:id',    to: redirect( "#{ENV['NEW_SENSORS_BASE_URL']}/api/legacy/sensors/%{id}.json" ), constraints: { format: :json }
