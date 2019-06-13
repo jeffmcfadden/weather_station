@@ -5,7 +5,7 @@
         %h2 
           Last 13 Months
         
-        = line_chart highs_and_lows_graph_data_path( range_start: 13.months.ago, range_end: Time.now ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#003f5c', '#374c80', '#7a5195', '#bc5090', '#ef5675', '#ff764a', '#ffa600' ]
+        = line_chart highs_and_lows_graph_data_path( range_start: 13.months.ago, range_end: Time.now ), min: 30, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#dc5228', '#286fdc', '#28dc96' ]
         
 .row{ style: "margin-top: 2em;" }
   .col-xs-12.col-sm-10.col-sm-offset-1
@@ -23,10 +23,10 @@
         
         %h3 Highs
         
-        = line_chart compare_month_highs_graph_data_path( month: params[:month] ), min: 45, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#003f5c', '#374c80', '#7a5195', '#bc5090', '#ef5675', '#ff764a', '#ffa600' ]
+        = line_chart compare_month_highs_graph_data_path( month: params[:month] ), min: 45, max: 125, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#58c486', '#003f5c', '#374c80', '#7a5195', '#bc5090', '#ef5675', '#ff764a', '#ffa600' ]
         
         
         
         %h3 Lows
         
-        = line_chart compare_month_lows_graph_data_path( month: params[:month] ), min: 25, max: 95, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#003f5c', '#374c80', '#7a5195', '#bc5090', '#ef5675', '#ff764a', '#ffa600' ]
+        = line_chart compare_month_lows_graph_data_path( month: params[:month] ), min: 25, max: 95, library: { responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true }}] } }, colors: [ '#58c486', '#003f5c', '#374c80', '#7a5195', '#bc5090', '#ef5675', '#ff764a', '#ffa600' ]
