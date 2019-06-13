@@ -67,7 +67,7 @@ class GraphDataController < ApplicationController
       start = Time.now.in_time_zone
     end
     
-    (0..3).each do |n|
+    years_range.each do |n|
       range = (start - n.years).beginning_of_month..(start - n.years).end_of_month
       temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: range ).order( day: :asc ).collect{ |a| [a.day.strftime("%b %-d"), a.maximum.to_f * (9.0/5.0) + 32.0] }
       
@@ -86,7 +86,7 @@ class GraphDataController < ApplicationController
       start = Time.now.in_time_zone
     end
     
-    (0..3).each do |n|
+    years_range.each do |n|
       range = (start - n.years).beginning_of_month..(start - n.years).end_of_month
       temperatures = SensorDailyAggregation.where( sensor_id: 1 ).where( day: range ).order( day: :asc ).collect{ |a| [a.day.strftime("%b %-d"), a.minimum.to_f * (9.0/5.0) + 32.0] }
       
@@ -94,6 +94,14 @@ class GraphDataController < ApplicationController
     end
     
     render json: data
+  end
+  
+  def years_range
+    data_start_year = 2015
+    
+    number_of_years = Time.now.year - data_start_year
+    
+    (0..number_of_years)
   end
   
   
