@@ -31,8 +31,8 @@
         %h2 
           Recent Temperature
         
-        - min_by_month  = [20, 30,  40,  40,  50,  60,  60,  60,  50,  40,  30, 30]
-        - high_by_month = [90, 90, 100, 100, 115, 120, 120, 120, 120, 105, 100, 90]
+        - min_by_month  = [20, 20, 30,  40,  40,  50,  60,  60,  60,  50,  40,  30, 30]
+        - high_by_month = [90, 90, 90, 100, 100, 115, 120, 120, 120, 120, 105, 100, 90]
       
         = line_chart recent_temperatures_graph_data_path, min: min_by_month[Time.now.month], max: high_by_month[Time.now.month], library: {responsive: true, scales: { yAxes: [{ ticks:{ stepSize: 10 } }], xAxes: [{gridLines: { display: true, lineWidth: 1, drawOnChartArea: true  }}] }}
     
